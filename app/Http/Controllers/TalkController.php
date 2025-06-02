@@ -20,7 +20,7 @@ class TalkController extends Controller
      */
     public function create()
     {
-        //
+        return view('talks.create');
     }
 
     /**
@@ -28,7 +28,7 @@ class TalkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
