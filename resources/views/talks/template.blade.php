@@ -1,9 +1,8 @@
 <div class="max-w-2xl mx-auto p-4">
-    <form class="space-y-6" method="post" action="{{ route('talks.store') }}">
         @csrf
         <div>
             <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Title</label>
-            <input type="text" id="title" name="title" value="{{ old('title') }}"
+            <input type="text" id="title" name="title" value="{{ old('title',$talk->title) }}"
                 class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring focus:ring-indigo-200 dark:focus:ring-indigo-600 focus:ring-opacity-50"
                 placeholder="How to save a life">
         </div>
@@ -13,9 +12,11 @@
                 <label for="type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Type</label>
                 <select id="type" name="type"
                     class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring focus:ring-indigo-200 dark:focus:ring-indigo-600 focus:ring-opacity-50">
-                    <option>Lightning</option>
-                    <option>Standard</option>
-                    <option>Keynote</option>
+                    @foreach(App\Enums\TalkType::cases() as $talkType)
+                        <option value="{{ $talkType->value }}" {{ old('type') == $talkType->value ? 'selected' : '' }}>
+                            {{ ucwords($talkType->value) }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
 
@@ -32,7 +33,7 @@
             <label for="abstract" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Abstract</label>
             <textarea id="abstract" name="abstract" rows="4"
                 class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring focus:ring-indigo-200 dark:focus:ring-indigo-600 focus:ring-opacity-50">
-                    value="{{ old('abstract') }}"
+                    {{ old('abstract') }}
                     </textarea>
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Describe the talk in a few sentences, in a way
                 that's compelling and informative and could be presented to the public.</p>
@@ -43,7 +44,7 @@
                 Notes</label>
             <textarea id="organizer_notes" name="organizer_notes" rows="4"
                 class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring focus:ring-indigo-200 dark:focus:ring-indigo-600 focus:ring-opacity-50">
-            value="{{ old('organizer_notes') }}"
+            {{ old('organizer_notes') }}
         </textarea>
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Write any notes you may want to pass to an event
                 organizer about this talk.</p>
@@ -59,5 +60,4 @@
                 Save
             </button>
         </div>
-    </form>
-</div>
+    </div>

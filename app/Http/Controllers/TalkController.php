@@ -55,7 +55,9 @@ class TalkController extends Controller
      */
     public function edit(Talk $talk)
     {
-        //
+        return view('talks.edit', [
+            'talk' => $talk,
+        ]);
     }
 
     /**
@@ -63,7 +65,7 @@ class TalkController extends Controller
      */
     public function update(Request $request, Talk $talk)
     {
-        //
+        return redirect()->route('talks.index');
     }
 
     /**
