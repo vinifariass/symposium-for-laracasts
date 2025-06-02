@@ -1,9 +1,10 @@
-   <form method="POST" action="{{ route('logout') }}">
+   <form method="POST" action="{{ $route}}">
        @csrf
        @method('delete')
 
-       <a href="#" onclick="event.preventDefault();"
-           class='underline' this.closest('form').submit();">
-           {{ $text }}
-       </a>
+      <a href="#" 
+       class="underline"
+       onclick="event.preventDefault(); this.closest('form').submit();">
+        {{ $text }}
+    </a>
    </form>
