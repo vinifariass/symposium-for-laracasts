@@ -12,7 +12,7 @@
                 <label for="type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Type</label>
                 <select id="type" name="type"
                     class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring focus:ring-indigo-200 dark:focus:ring-indigo-600 focus:ring-opacity-50">
-                    @foreach(App\Enums\TalkType::cases() as $talkType)
+                    @foreach (App\Enums\TalkType::cases() as $talkType)
                         <option value="{{ $talkType->value }}" {{ old('type') == $talkType->value ? 'selected' : '' }}>
                             {{ ucwords($talkType->value) }}
                         </option>
