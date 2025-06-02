@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Talk;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,7 +46,7 @@ class TalkController extends Controller
     public function show(Talk $talk)
     {
         return view('talks.show', [
-            'talk' => $talk
+            'talk' => $talk,
         ]);
     }
 
@@ -72,8 +71,8 @@ class TalkController extends Controller
      */
     public function destroy(Talk $talk)
     {
-        if($talk->user_id === Auth::user()->id) {
-          $talk->delete();
+        if ($talk->user_id === Auth::user()->id) {
+            $talk->delete();
         }
 
         return redirect()->route('talks.index');
