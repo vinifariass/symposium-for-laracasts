@@ -14,16 +14,13 @@ class TalkController extends Controller
      */
     public function index()
     {
-               return view('talks.index',['talks' => Auth::user()->talks]);
-
+        return view('talks.index', ['talks' => Auth::user()->talks]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
@@ -33,7 +30,7 @@ class TalkController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required',
-            'length' =>'',
+            'length' => '',
             'type' => 'required',
             'abstract' => '',
             'organizer_notes' => '',
@@ -49,7 +46,9 @@ class TalkController extends Controller
      */
     public function show(Talk $talk)
     {
-        //
+        return view('talks.show', [
+            'talk' => $talk
+        ]);
     }
 
     /**
@@ -73,6 +72,10 @@ class TalkController extends Controller
      */
     public function destroy(Talk $talk)
     {
-        //
+        if($talk->user_id === Auth::user()->id) {
+          $talk->delete();
+        }
+
+        return redirect()->route('talks.index');
     }
 }
