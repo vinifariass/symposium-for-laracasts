@@ -49,6 +49,10 @@
                         </x-dropdown-link>
 
                         <!-- Authentication -->
+<<<<<<< HEAD
+=======
+
+>>>>>>> a944f2526a9fe7ea8536ecee4e22df8c1b8247ae
                     </x-slot>
                 </x-dropdown>
             </div>

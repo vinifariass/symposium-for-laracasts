@@ -10,6 +10,7 @@
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <ul class="list-disc pl-4">
+<<<<<<< HEAD
                         @foreach ($talks as $talk)
                             <li>
                                 <a href="{{ route('talks.show', ['talk' => $talk]) }}" class="hover:underline">
@@ -17,6 +18,13 @@
                                 </a>
                             </li>
                         @endforeach
+=======
+                    @foreach ($talks as $talk)
+                    <li>
+                    <a href="{{ route('talks.show',['talk'=> $talk]) }}" class="hover:underline">{{ $talk->title }}</a>
+                    </li>
+                    @endforeach
+>>>>>>> a944f2526a9fe7ea8536ecee4e22df8c1b8247ae
                     </ul>
                 </div>
             </div>

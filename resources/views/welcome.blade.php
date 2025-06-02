@@ -50,6 +50,10 @@
                         @endif
                     @endauth
                 </nav>
+<<<<<<< HEAD
+=======
+
+>>>>>>> a944f2526a9fe7ea8536ecee4e22df8c1b8247ae
             @endif
         </header>
         <div
