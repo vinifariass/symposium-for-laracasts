@@ -23,6 +23,7 @@ class ConferenceFactory extends Factory
 
         return [
             'title' => fake()->sentence(),
+            'description' => fake()->paragraph(),
             'location' => fake()->city() . ', ' . fake()->country(),
             'url' => fake()->url(),
             'starts_at' => $startsAt,
