@@ -64,3 +64,10 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## Laravel SAAS
 
 A SaaS that registers conference submissions and can favorite these conferences 
+
+# Symposium
+
+## Nouns/Resources
+- **User**
+- **Talks**
+- **Conferences**
