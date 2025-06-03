@@ -17,7 +17,7 @@ test('a user can update their talk', function () {
     $response
         ->assertSessionHasNoErrors()
         ->assertRedirect(route('talks.show', ['talk' => $talk]));
-    $this->assertEquals("New title here", $talk->refresh()->title);
+    $this->assertEquals('New title here', $talk->refresh()->title);
 });
 
 test('a user cannot update users talk', function () {

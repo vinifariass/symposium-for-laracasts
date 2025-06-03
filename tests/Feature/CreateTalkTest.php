@@ -1,7 +1,6 @@
 <?php
 
 use App\Enums\TalkType;
-use App\Models\Talk;
 use App\Models\User;
 
 test('a user can create a talk', function () {
@@ -12,13 +11,13 @@ test('a user can create a talk', function () {
         ->from('/profile')
         ->post('talks.store', [
             'title' => $title = fake()->sentence(),
-            'type' => TalkType::KEYNOTE->value
+            'type' => TalkType::KEYNOTE->value,
         ]);
 
     $response
         ->assertRedirect(route('talks.index'));
 
-        $this->assertDatabaseHas('talks', [
-            'title' => $title,
-        ]);
+    $this->assertDatabaseHas('talks', [
+        'title' => $title,
+    ]);
 });

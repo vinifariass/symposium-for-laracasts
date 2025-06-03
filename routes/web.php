@@ -31,13 +31,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::get('/auth/redirect', function () {
+Route::get('auth/redirect', function () {
     return Socialite::driver('github')->redirect();
 });
- 
-Route::get('/auth/callback', function () {
-  $githubUser = Socialite::driver('github')->user();
- 
+
+Route::get('auth/callback', function () {
+    $githubUser = Socialite::driver('github')->user();
+
     $user = User::updateOrCreate([
         'github_id' => $githubUser->id,
     ], [
@@ -46,8 +46,8 @@ Route::get('/auth/callback', function () {
         'github_token' => $githubUser->token,
         'github_refresh_token' => $githubUser->refreshToken,
     ]);
- 
+
     Auth::login($user);
- 
+
     return redirect('/dashboard');
 });

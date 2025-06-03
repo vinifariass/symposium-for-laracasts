@@ -53,10 +53,11 @@ class TalkController extends Controller
      */
     public function show(Talk $talk)
     {
-    
-        if(request()->user()->cannot('view', $talk)) {
+
+        if (request()->user()->cannot('view', $talk)) {
             abort(403, 'You do not have permission to view this talk.');
         }
+
         return view('talks.show', [
             'talk' => $talk,
         ]);

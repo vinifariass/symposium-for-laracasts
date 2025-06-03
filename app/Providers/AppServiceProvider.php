@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        Gate::define('update-talk',function (User $user, Talk $talk) {
+        Gate::define('update-talk', function (User $user, Talk $talk) {
             return $user->id === $talk->author->id;
         });
     }
