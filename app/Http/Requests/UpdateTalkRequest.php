@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\TalkType;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateTalkRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class UpdateTalkRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return $this->user()->id === $this->talk->user_id;
     }
 
     /**
@@ -22,7 +24,12 @@ class UpdateTalkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|max:255',
+            'body' => 'required',
+            'length' => '',
+            'type' => ['required', Rule::enum(TalkType::class)],
+            'abstract' => '',
+            'organizer_notes' => '',
         ];
     }
 }
