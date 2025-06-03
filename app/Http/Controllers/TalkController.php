@@ -21,7 +21,8 @@ class TalkController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create() {
+    public function create()
+    {
         return view('talks.create', [
             'talk' => new Talk(),
         ]);
@@ -36,7 +37,7 @@ class TalkController extends Controller
             'title' => 'required|max:255',
             'body' => 'required',
             'length' => '',
-            'type' => ['required',Rule::enum(TalkType::class)],
+            'type' => ['required', Rule::enum(TalkType::class)],
             'abstract' => '',
             'organizer_notes' => '',
         ]);
@@ -51,6 +52,9 @@ class TalkController extends Controller
      */
     public function show(Talk $talk)
     {
+        if ($talk->author->id !== Auth::user()->id) {
+            abort(403);
+        }
         return view('talks.show', [
             'talk' => $talk,
         ]);
@@ -71,11 +75,14 @@ class TalkController extends Controller
      */
     public function update(Request $request, Talk $talk)
     {
-           $validated = $request->validate([
+        if ($talk->author->id !== Auth::user()->id) {
+            abort(403);
+        }
+        $validated = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required',
             'length' => '',
-            'type' => ['required',Rule::enum(TalkType::class)],
+            'type' => ['required', Rule::enum(TalkType::class)],
             'abstract' => '',
             'organizer_notes' => '',
         ]);
